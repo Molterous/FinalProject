@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/insho/AndroidStudioProjects/FinalProjectV1/app/src/main/res/layout/activity_login.xml" value="0.14356884057971014" />
+        <entry key="..\:/Users/insho/AndroidStudioProjects/FinalProjectV1/app/src/main/res/drawable/ic_twotone_phone_android_24.xml" value="0.19230769230769232" />
+        <entry key="..\:/Users/insho/AndroidStudioProjects/FinalProjectV1/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/insho/AndroidStudioProjects/FinalProjectV1/app/src/main/res/layout/activity_main.xml" value="0.14719202898550723" />
+        <entry key="..\:/Users/insho/AndroidStudioProjects/FinalProjectV1/app/src/main/res/layout/activity_profile.xml" value="0.16802536231884058" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

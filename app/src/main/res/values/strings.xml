@@ -8,4 +8,5 @@
     <string name="invalid_phone_no">Number should be 10 digit long with no Country Code</string>
     <string name="invalid_otp">Invalid OTP</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="didn_t_get_otp_resend_it">Didn\'t get OTP? <b>Resend it</b>.</string>
 </resources>
