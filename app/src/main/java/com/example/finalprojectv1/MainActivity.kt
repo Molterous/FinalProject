@@ -20,5 +20,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent( this, ProfileActivity::class.java ))
         }
 
+        binding.addTripsBtn.setOnClickListener {
+            startActivity(Intent(this,Trips::class.java))
+        }
+
     }
 }
