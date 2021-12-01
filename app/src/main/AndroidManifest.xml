@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FinalProjectV1"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AllTrips"
+            android:exported="false" />
+        <activity
             android:name=".Trips"
             android:exported="false" />
         <activity
