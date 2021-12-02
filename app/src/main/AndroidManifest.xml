@@ -13,10 +13,13 @@
         android:theme="@style/Theme.FinalProjectV1"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".AllTrips"
+            android:name=".activities.AllTrips"
             android:exported="false" />
         <activity
-            android:name=".Trips"
+            android:name=".activities.Trips"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ProfileData"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"

@@ -3,6 +3,7 @@ package com.example.finalprojectv1
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.finalprojectv1.activities.Trips
 import com.example.finalprojectv1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.addTripsBtn.setOnClickListener {
-            startActivity(Intent(this,Trips::class.java))
+            startActivity(Intent(this, Trips::class.java))
         }
 
     }

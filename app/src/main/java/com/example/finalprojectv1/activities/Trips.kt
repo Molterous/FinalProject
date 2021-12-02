@@ -1,10 +1,9 @@
-package com.example.finalprojectv1
+package com.example.finalprojectv1.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.finalprojectv1.databinding.ActivityLoginBinding
-import com.example.finalprojectv1.databinding.ActivityMainBinding
+import com.example.finalprojectv1.R
 import com.example.finalprojectv1.databinding.ActivityTripsBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

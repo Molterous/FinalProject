@@ -1,13 +1,16 @@
 package com.example.finalprojectv1
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.finalprojectv1.activities.ProfileData
 import com.example.finalprojectv1.databinding.ActivityLoginBinding
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
@@ -38,6 +41,15 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val sharedPreferences = getSharedPreferences("LoginDetails", Context.MODE_PRIVATE)
+        val bool = sharedPreferences.getBoolean("LoggedIn", false)
+
+        if( bool ){
+            Toast.makeText(this, "Welcome Back", Toast.LENGTH_LONG).show()
+            startActivity(Intent( this, MainActivity::class.java ))
+        }
+
         binding.phoneL1.visibility = View.VISIBLE
         binding.codeL1.visibility = View.GONE
 
@@ -156,7 +168,9 @@ class LoginActivity : AppCompatActivity() {
                 val phone = firebaseAuth.currentUser?.phoneNumber
                 Toast.makeText(this, "Logged in as $phone", Toast.LENGTH_SHORT).show()
 
-                startActivity(Intent( this, MainActivity::class.java ))
+                saveData()
+                startActivity(Intent( this, ProfileData::class.java ))
+
 
             }
 
@@ -165,6 +179,21 @@ class LoginActivity : AppCompatActivity() {
                 progressDialog.dismiss()
                 Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
             }
+
+    }
+
+    private fun saveData(){
+
+        val sharedPreferences = getSharedPreferences("LoginDetails", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply{
+
+            val phone = binding.phoneEt.text.toString().trim()
+            putString("Id",phone)
+            putBoolean("LoggedIn",true)
+
+        }.apply()
 
     }
 
