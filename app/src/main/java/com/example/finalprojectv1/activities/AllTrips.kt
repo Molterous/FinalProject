@@ -41,7 +41,7 @@ class AllTrips : AppCompatActivity() {
 
                     }
 
-                    userRecyclerview.adapter = tripAdapter(userArrayList)
+                    userRecyclerview.adapter = tripAdapter(this@AllTrips,userArrayList)
 
 
                 }
