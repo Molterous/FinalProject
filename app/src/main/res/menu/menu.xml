@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ic_All_Trip"
+        android:icon="@drawable/trip"
+        android:title="Trip"
+        />
+
+    <item
+        android:id="@+id/ic_profile"
+        android:icon="@drawable/profile"
+        android:title="profile"
+        />
+    <item
+        android:id="@+id/ic_Add_Trip"
+        android:icon="@drawable/add_trip"
+        android:title="Add Trip"
+        />
+
+
+</menu>

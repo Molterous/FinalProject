@@ -22,7 +22,7 @@ class AllTrips : AppCompatActivity() {
         userRecyclerview.layoutManager = LinearLayoutManager(this)
         userRecyclerview.setHasFixedSize(true)
 
-        userArrayList = arrayListOf<FetchTrips>()
+       // userArrayList = arrayListOf<FetchTrips>()
         getUserData()
     }
 
