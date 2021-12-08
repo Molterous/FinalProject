@@ -43,7 +43,7 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         holder.destination.setOnClickListener {
 
           //  val isprofile = true
-            val phone = currentitem.userid
+            val phone = currentitem.phone
             Log.d("Acitivity",phone.toString())
             Toast.makeText( context,  phone,Toast.LENGTH_LONG).show()
 
