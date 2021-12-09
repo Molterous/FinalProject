@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         style="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:layout_marginTop="180dp"
-        android:text="Enter Full Name"
+        android:text="Full Name"
         android:textAlignment="center"
         android:textColor="#000"
         />
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         style="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:layout_marginTop="70dp"
-        android:text="Enter Full Name"
+        android:text="Age"
         android:textAlignment="center"
         android:textColor="#000"
         />
@@ -79,4 +79,15 @@
         android:textColorHint="#c5c5c5"
         />
 
+    <Button
+        android:id="@+id/LogoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Logout"
+        android:padding="5dp"
+        />
+
 </LinearLayout>
+

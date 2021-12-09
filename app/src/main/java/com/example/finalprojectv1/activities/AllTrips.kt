@@ -1,11 +1,16 @@
+
+
 package com.example.finalprojectv1.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.finalprojectv1.ProfileActivity
 import com.example.finalprojectv1.R
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class AllTrips : AppCompatActivity() {
 
@@ -18,11 +23,22 @@ class AllTrips : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_trips)
 
+        // navbar
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.ic_Add_Trip-> startActivity(Intent( this, Trips::class.java ))
+                R.id.ic_profile->startActivity(Intent( this, ProfileActivity::class.java ))
+//                R.id.ic_All_Trip-> startActivity(Intent(this,AllTrips::class.java))
+            }
+            true
+        }
+        //navbar end
+
         userRecyclerview = findViewById(R.id.recyclerTrips)
         userRecyclerview.layoutManager = LinearLayoutManager(this)
         userRecyclerview.setHasFixedSize(true)
 
-       // userArrayList = arrayListOf<FetchTrips>()
+        userArrayList = arrayListOf<FetchTrips>()
         getUserData()
     }
 
@@ -54,3 +70,6 @@ class AllTrips : AppCompatActivity() {
         })
     }
 }
+
+
+

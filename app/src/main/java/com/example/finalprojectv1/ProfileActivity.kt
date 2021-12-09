@@ -1,12 +1,19 @@
+
 package com.example.finalprojectv1
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.finalprojectv1.activities.AllTrips
+import com.example.finalprojectv1.activities.ProfileData
+import com.example.finalprojectv1.activities.Trips
 import com.example.finalprojectv1.databinding.ActivityProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_main.*
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -18,13 +25,16 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
         lateinit var phone:String
         firebaseAuth = FirebaseAuth.getInstance()
         val bundle :Bundle ?=intent.extras
         if (bundle!=null){
             //val message = bundle.getString("object") // 1
 
-             phone = intent.getStringExtra("ExtraPhone").toString()
+            phone = intent.getStringExtra("ExtraPhone").toString()
             //val isprofile = intent.getStringExtra("ExtraProfile")
 
             //Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -32,7 +42,7 @@ class ProfileActivity : AppCompatActivity() {
 
         }
         else {
-             phone = (firebaseAuth.currentUser?.phoneNumber).toString()
+            phone = (firebaseAuth.currentUser?.phoneNumber).toString()
 
         }
 
@@ -41,6 +51,11 @@ class ProfileActivity : AppCompatActivity() {
 
         readData( phone)
 
+        binding.LogoutBtn.setOnClickListener {
+
+            logout()
+
+        }
 
     }
 
@@ -75,4 +90,20 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
+    fun logout(){
+
+        val sharedPreferences = getSharedPreferences("LoginDetails", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply{
+
+            val phone = binding.phoneEt.text.toString().trim()
+            putString("Id",null)
+            putBoolean("LoggedIn",false)
+
+        }.apply()
+        startActivity(Intent( this, LoginActivity::class.java ))
+    }
+
 }
+

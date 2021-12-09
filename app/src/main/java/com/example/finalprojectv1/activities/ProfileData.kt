@@ -1,3 +1,5 @@
+
+
 package com.example.finalprojectv1.activities
 
 import android.content.Intent
@@ -26,9 +28,8 @@ class ProfileData : AppCompatActivity() {
         binding = ActivityProfileDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        firebaseAuth =  FirebaseAuth.getInstance()
         readData()
-
-        firebaseAuth = FirebaseAuth.getInstance()
 
         binding.detailSubmitBtn.setOnClickListener {
 
@@ -76,7 +77,7 @@ class ProfileData : AppCompatActivity() {
 
 
             }
-            
+
         }.addOnFailureListener {
         }
 
