@@ -1,10 +1,15 @@
 
 package com.example.finalprojectv1.activities
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.DatePicker
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +22,9 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_trips.*
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.Comparator
+import kotlin.collections.ArrayList
 
 //class Trips : AppCompatActivity() {
 //
@@ -88,7 +96,11 @@ import java.text.SimpleDateFormat
 //      }
 //}
 
-class Trips : AppCompatActivity() {
+class Trips : AppCompatActivity(), View.OnClickListener {
+
+    lateinit var myCalendar: Calendar
+    lateinit var dateSetListner : DatePickerDialog.OnDateSetListener
+    lateinit var timeSetListener: TimePickerDialog.OnTimeSetListener
 
     private lateinit var binding : ActivityTripsBinding
     private lateinit var database : DatabaseReference
@@ -104,6 +116,8 @@ class Trips : AppCompatActivity() {
         binding = ActivityTripsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        date_et.setOnClickListener(this)
+        time_et.setOnClickListener(this)
 
 
         firebaseAuth = FirebaseAuth.getInstance()
@@ -127,15 +141,18 @@ class Trips : AppCompatActivity() {
             database.child(destination).setValue(form).addOnSuccessListener {
                 binding.sourceEt.text.clear()
                 binding.destinationEt.text.clear()
-                binding.dateEt.text.clear()
-                binding.timeEt.text.clear()
+                binding.dateEt.text?.clear()
+                binding.timeEt.text?.clear()
 
                 Toast.makeText(this,"Successfully Saved",Toast.LENGTH_SHORT).show()
             }.addOnFailureListener{
                 Toast.makeText(this,"Failure",Toast.LENGTH_SHORT).show()
             }
 
-            getUserData()
+            userArrayList.clear()
+            //getUserData()
+            userRecyclerview?.adapter?.notifyDataSetChanged()
+            //getUserData()
         }
 
     }
@@ -199,6 +216,64 @@ class Trips : AppCompatActivity() {
         }
     }
 
+    override fun onClick(p0: View?) {
+        when(p0?.id){
+            R.id.date_et -> {
+                setListner()
+            }
+            R.id.time_et -> {
+                timeSetListner()
+            }
+        }
+    }
+    private fun timeSetListner() {
+        myCalendar = Calendar.getInstance()
+
+        timeSetListener = TimePickerDialog.OnTimeSetListener{ _: TimePicker, hourOfDay: Int, min:Int->
+            myCalendar.set(Calendar.HOUR_OF_DAY,hourOfDay)
+            myCalendar.set(Calendar.MINUTE,min)
+            updateTime()
+        }
+        val timePickerDialog = TimePickerDialog(
+            this,timeSetListener,myCalendar.get(Calendar.HOUR_OF_DAY),
+            myCalendar.get(Calendar.MINUTE),false
+        )
+        timePickerDialog.show()
+    }
+
+    private fun updateTime() {
+        val myformat = "h:mm a"
+        val sdf = SimpleDateFormat(myformat)
+        time_et.setText(sdf.format(myCalendar.time))
+
+
+    }
+
+    private fun setListner() {
+        myCalendar = Calendar.getInstance()
+
+        dateSetListner = DatePickerDialog.OnDateSetListener{ _: DatePicker, year: Int, month:Int, dayOfMonth:Int->
+            myCalendar.set(Calendar.YEAR,year)
+            myCalendar.set(Calendar.MONTH,month)
+            myCalendar.set(Calendar.DAY_OF_MONTH,dayOfMonth)
+            updateDate()
+        }
+        val datePickerDialog = DatePickerDialog(
+            this,dateSetListner,myCalendar.get(Calendar.YEAR),
+            myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)
+        )
+        datePickerDialog.datePicker.minDate = System.currentTimeMillis()
+        datePickerDialog.show()
+    }
+
+    private fun updateDate() {
+        val myformat = "EEE, d MMM yyyy"
+        val sdf = SimpleDateFormat(myformat)
+        date_et.setText(sdf.format(myCalendar.time))
+
+        time_et.visibility = View.VISIBLE
+        time_tv.visibility = View.VISIBLE
+    }
 }
 
 
