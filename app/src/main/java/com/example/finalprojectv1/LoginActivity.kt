@@ -10,6 +10,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.finalprojectv1.activities.AllTrips
 import com.example.finalprojectv1.activities.ProfileData
 import com.example.finalprojectv1.databinding.ActivityLoginBinding
 import com.google.firebase.FirebaseException
@@ -47,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
 
         if( bool ){
             Toast.makeText(this, "Welcome Back", Toast.LENGTH_LONG).show()
-            startActivity(Intent( this, MainActivity::class.java ))
+            startActivity(Intent( this, AllTrips::class.java ))
         }
 
         binding.phoneL1.visibility = View.VISIBLE
