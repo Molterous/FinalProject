@@ -119,6 +119,17 @@ class Trips : AppCompatActivity(), View.OnClickListener {
         date_et.setOnClickListener(this)
         time_et.setOnClickListener(this)
 
+        // navbar
+        binding.bottomNavigation.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+//                R.id.ic_Add_Trip-> startActivity(Intent( this, Trips::class.java ))
+                R.id.ic_profile->startActivity(Intent( this, ProfileActivity::class.java ))
+                R.id.ic_All_Trip-> startActivity(Intent(this,AllTrips::class.java))
+            }
+            true
+        }
+        //navbar end
+
 
         firebaseAuth = FirebaseAuth.getInstance()
         userRecyclerview = findViewById(R.id.user_Trips)

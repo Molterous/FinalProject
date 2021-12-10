@@ -46,7 +46,7 @@ class ProfileData : AppCompatActivity() {
                 binding.ageEt.text.clear()
 
                 Toast.makeText(this@ProfileData, "Profile Data Set Successfully", Toast.LENGTH_SHORT).show()
-                startActivity(Intent( this, MainActivity::class.java ))
+                startActivity(Intent( this, AllTrips::class.java ))
 
             }.addOnFailureListener{
 

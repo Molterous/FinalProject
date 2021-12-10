@@ -30,7 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Date : "
+                android:text="Date:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
@@ -50,7 +50,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="Time : "
+                android:text="Time:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
@@ -118,7 +118,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="10dp"
                 android:text="5*"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -138,7 +138,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
@@ -146,7 +145,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="20dp"
                     android:text="Delhi "
                     android:textColor="@color/black"
                     android:textSize="25sp"
@@ -167,25 +166,16 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
                     android:text="Manali "
+                    android:layout_marginEnd="16dp"
                     android:textColor="@color/black"
                     android:textSize="25sp"
                     android:textStyle="bold"
                     android:layout_marginStart="8dp" />
 
 
-            </LinearLayout>
 
-            <Button
-                android:id="@+id/BookBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.Green"
-                android:layout_gravity="center_horizontal"
-                android:text="Book ->"
-                android:padding="5dp"
-                />
+            </LinearLayout>
 
         </LinearLayout>
 

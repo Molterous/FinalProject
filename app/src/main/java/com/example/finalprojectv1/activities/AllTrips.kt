@@ -42,6 +42,11 @@ class AllTrips : AppCompatActivity() {
         getUserData()
     }
 
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
+
     private fun getUserData() {
         dbref = FirebaseDatabase.getInstance().getReference("Form")
 
