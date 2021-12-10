@@ -39,6 +39,10 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         holder.destination.text = currentitem.destination
         holder.date.text = currentitem.date
         holder.time.text = currentitem.time
+        holder.car.text = currentitem.car
+        holder.seat.text = currentitem.seat
+        holder.rating.text = "0"
+
 
         holder.destination.setOnClickListener {
 
@@ -74,6 +78,9 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         val destination : TextView = itemView.findViewById(R.id.tvDestination)
         val date : TextView = itemView.findViewById(R.id.tvdate)
         val time : TextView = itemView.findViewById(R.id.tvtime)
+        val car : TextView = itemView.findViewById(R.id.tvCar)
+        val seat : TextView = itemView.findViewById(R.id.tvSeat)
+        val rating : TextView = itemView.findViewById(R.id.tvRating)
 
 
 

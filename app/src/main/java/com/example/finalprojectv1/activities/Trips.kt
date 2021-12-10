@@ -144,8 +144,11 @@ class Trips : AppCompatActivity(), View.OnClickListener {
             val date = binding.dateEt.text.toString()
             val time = binding.timeEt.text.toString()
             val phone = (firebaseAuth.currentUser?.phoneNumber).toString()
+            val car = binding.carET.text.toString()
+            val seat = binding.seatET.text.toString()
 
-            val form = Form(source,destination,date,time,phone)
+
+            val form = Form(source,destination,date,time,phone,car,seat,"0")
 
             database = FirebaseDatabase.getInstance().getReference("Form")
 
@@ -154,6 +157,8 @@ class Trips : AppCompatActivity(), View.OnClickListener {
                 binding.destinationEt.text.clear()
                 binding.dateEt.text?.clear()
                 binding.timeEt.text?.clear()
+                binding.carET.text.clear()
+                binding.seatET.text.clear()
 
                 Toast.makeText(this,"Successfully Saved",Toast.LENGTH_SHORT).show()
             }.addOnFailureListener{
