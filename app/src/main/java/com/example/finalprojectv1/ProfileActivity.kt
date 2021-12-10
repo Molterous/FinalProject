@@ -3,13 +3,12 @@ package com.example.finalprojectv1
 
 import android.content.Context
 import android.content.Intent
+import android.location.Address
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.finalprojectv1.activities.AllTrips
-import com.example.finalprojectv1.activities.ProfileData
-import com.example.finalprojectv1.activities.Trips
 import com.example.finalprojectv1.databinding.ActivityProfileBinding
+import com.example.finalprojectv1.databinding.ProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -17,13 +16,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class ProfileActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityProfileBinding
+
+    private lateinit var binding: ProfileBinding
     private lateinit var database: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityProfileBinding.inflate(layoutInflater)
+        binding = ProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -66,21 +66,41 @@ class ProfileActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("Users")
         database.child(phone).get().addOnSuccessListener {
 
-            var fName = "Guest"
-            var age = "100"
+            var fName = "Guesst"
+            var AadharCard = "9898 8989 8989"
+            var PanCard = "CNZNHJ898"
+            var EmailID = "johndoe@gmail.com"
+            var PhoneNumber = "98989000000"
+            var EmergencyNumber = "98989XXXXXX"
+            var Address= "abc abc abc"
+            var Profession = "Student"
+
+
 
             if( it.exists() ){
 
                 fName = it.child("name").value.toString()
-                age = it.child("age").value.toString()
+                AadharCard = it.child("aadhaar_card").value.toString()
+                PanCard = it.child("pan_card").value.toString()
+                EmailID = it.child("email_id").value.toString()
+                PhoneNumber = it.child("phone_number").value.toString()
+                EmergencyNumber = it.child("emergency_contact_number").value.toString()
+                Address= it.child("address").value.toString()
+                Profession = it.child("profession").value.toString()
+
 
                 Toast.makeText(this@ProfileActivity, "Fetch Successful", Toast.LENGTH_SHORT).show()
 
             }
 
-            binding.fullNameEt.text = fName
-            binding.ageEt.text = age
-            binding.phoneEt.text = phone
+            binding.tvName.text = fName
+            binding.tvAddress.text = Address
+            binding.tvPhoneNumber.text = PhoneNumber
+            binding.tvAdharCard.text = AadharCard
+            binding.tvPanCard.text=PanCard
+            binding.tvEmergencyContact.text=EmergencyNumber
+            binding.tvEmailAddress.text=EmailID
+            binding.tvProfession.text=Profession
 
         }.addOnFailureListener {
 
@@ -97,7 +117,7 @@ class ProfileActivity : AppCompatActivity() {
         editor.clear()
         editor.apply{
 
-            val phone = binding.phoneEt.text.toString().trim()
+            //val phone = binding.tvPhoneNumber.text.toString().trim()
             putString("Id",null)
             putBoolean("LoggedIn",false)
 
@@ -106,4 +126,3 @@ class ProfileActivity : AppCompatActivity() {
     }
 
 }
-
