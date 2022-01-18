@@ -69,6 +69,7 @@ class ProfileData : AppCompatActivity() {
                 binding.etProfession.text.clear()
 
                 Toast.makeText(this@ProfileData, "Profile Data Set Successfully", Toast.LENGTH_SHORT).show()
+                finish()
                 startActivity(Intent( this, AllTrips::class.java ))
 
             }.addOnFailureListener{
@@ -109,6 +110,9 @@ class ProfileData : AppCompatActivity() {
 
                 val editName: EditText = findViewById(R.id.et_name)
                 editName.setText(fName)
+
+                val Aadhar: EditText = findViewById(R.id.et_Adhaar_card)
+                Aadhar.setText(AadharCard)
 
                 val EmailAddress: EditText = findViewById(R.id.et_email_id)
                 EmailAddress.setText(EmailID)

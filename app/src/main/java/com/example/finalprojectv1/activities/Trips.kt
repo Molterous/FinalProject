@@ -122,9 +122,10 @@ class Trips : AppCompatActivity(), View.OnClickListener {
         // navbar
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
-//                R.id.ic_Add_Trip-> startActivity(Intent( this, Trips::class.java ))
+                //R.id.ic_Add_Trip-> startActivity(Intent( this, Trips::class.java ))
                 R.id.ic_profile->startActivity(Intent( this, ProfileActivity::class.java ))
                 R.id.ic_All_Trip-> startActivity(Intent(this,AllTrips::class.java))
+                R.id.ic_chat->startActivity(Intent( this, ChatList::class.java ))
             }
             true
         }
@@ -152,7 +153,7 @@ class Trips : AppCompatActivity(), View.OnClickListener {
 
             database = FirebaseDatabase.getInstance().getReference("Form")
 
-            database.child(destination).setValue(form).addOnSuccessListener {
+            database.child( destination ).setValue(form).addOnSuccessListener {
                 binding.sourceEt.text.clear()
                 binding.destinationEt.text.clear()
                 binding.dateEt.text?.clear()

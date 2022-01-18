@@ -170,6 +170,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Logged in as $phone", Toast.LENGTH_SHORT).show()
 
                 saveData()
+                finish()
                 startActivity(Intent( this, ProfileData::class.java ))
 
 

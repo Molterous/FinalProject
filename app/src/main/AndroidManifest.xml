@@ -13,7 +13,13 @@
         android:theme="@style/Theme.FinalProjectV1"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.ChatMessage"
+            android:exported="false" />
+        <activity
             android:name=".activities.AllTrips"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ChatList"
             android:exported="false" />
         <activity
             android:name=".activities.Trips"

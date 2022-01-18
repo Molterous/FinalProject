@@ -6,12 +6,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.finalprojectv1.LoginActivity
 import com.example.finalprojectv1.ProfileActivity
 import com.example.finalprojectv1.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.profile.view.*
 
 class tripAdapter(private val context: Context, private val TripList : ArrayList<FetchTrips>) : RecyclerView.Adapter<tripAdapter.MyViewHolder>() {
 
@@ -36,6 +41,7 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         val currentitem = TripList[position]
 
         holder.source.text = currentitem.source
+        holder.ph.text = currentitem.phone
         holder.destination.text = currentitem.destination
         holder.date.text = currentitem.date
         holder.time.text = currentitem.time
@@ -64,7 +70,50 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
 //            }
             //      val =true
 //
+
+            holder.myButton.setOnClickListener {
+
+                var database = FirebaseDatabase.getInstance().getReference("List")
+
+
+                val ph = holder.ph.text.toString()
+                val dest = holder.destination.text.toString()
+                val sour = holder.source.text.toString()
+                val time = holder.time.text.toString()
+                val date = holder.date.text.toString()
+
+
+
+                val firebaseAuth = FirebaseAuth.getInstance()
+                var phone = (firebaseAuth.currentUser?.phoneNumber).toString()
+
+                if( !ph.equals(phone, true) ) {
+
+                    database.child(ph).child( dest+"_"+sour+"_"+date+"_"+time ).child(phone).setValue( "N/A" ).addOnSuccessListener {
+                        Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener{
+                        Toast.makeText(context,"Failure",Toast.LENGTH_SHORT).show()
+                    }
+
+                    database.child(phone).child( dest+"_"+sour+"_"+date+"_"+time ).child(ph).setValue( "N/A" ).addOnSuccessListener {
+                        Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener{
+                        Toast.makeText(context,"Failure",Toast.LENGTH_SHORT).show()
+                    }
+
+                }else{
+                    Toast.makeText( context,"Yours own trip, Booking not possible !!"
+                                            ,Toast.LENGTH_LONG).show()
+                }
+
+                val context = context
+                val intent = Intent( context, ChatList::class.java)
+                context.startActivity(intent)
+
+            }
+
         }
+        
 
     }
 
@@ -74,14 +123,16 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
 
 
     class MyViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
+
         val source : TextView = itemView.findViewById(R.id.tvSource)
         val destination : TextView = itemView.findViewById(R.id.tvDestination)
         val date : TextView = itemView.findViewById(R.id.tvdate)
         val time : TextView = itemView.findViewById(R.id.tvtime)
+        val ph : TextView = itemView.findViewById(R.id.tv_phone_number)
         val car : TextView = itemView.findViewById(R.id.tvCar)
         val seat : TextView = itemView.findViewById(R.id.tvSeat)
         val rating : TextView = itemView.findViewById(R.id.tvRating)
-
+        val myButton = itemView.findViewById<Button>(R.id.BookBtnAllTrip)
 
 
 
