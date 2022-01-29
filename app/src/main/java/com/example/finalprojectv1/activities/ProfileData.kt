@@ -1,8 +1,6 @@
-
-
 package com.example.finalprojectv1.activities
-
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -16,15 +14,26 @@ import com.example.finalprojectv1.utils.UserDetail2
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.edit_profile.*
+import kotlinx.android.synthetic.main.profile.*
 
 class ProfileData : AppCompatActivity() {
 
     private lateinit var binding: EditProfileBinding
     private lateinit var database: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
+    private  lateinit var storageReference: StorageReference
+    private lateinit var imageUri:Uri
 
 
+    companion object {
+        val IMAGE_REQUEST_CODE = 100;
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
+
 
         super.onCreate(savedInstanceState)
         binding = EditProfileBinding.inflate(layoutInflater)
@@ -32,6 +41,11 @@ class ProfileData : AppCompatActivity() {
 
         firebaseAuth =  FirebaseAuth.getInstance()
         readData()
+
+        binding.profileImage.setOnClickListener {
+
+            pickImageFromGallery()
+        }
 
         binding.btnSubmit.setOnClickListener {
 
@@ -42,15 +56,6 @@ class ProfileData : AppCompatActivity() {
             val aadharCard=binding.etPanCard.text.toString()
             val profession= binding.etProfession.text.toString()
             val address=binding.etAddress.text.toString()
-
-            //val phone=binding.etPhoneNumber.toString()
-            //val age = binding.ageEt.text.toString()
-
-            //..............................
-            //val name=binding.
-
-
-            //...................
 
             val phone = (firebaseAuth.currentUser?.phoneNumber).toString()
 
@@ -63,16 +68,21 @@ class ProfileData : AppCompatActivity() {
                 binding.etAdhaarCard.text.clear()
                 binding.etEmailId.text.clear()
                 binding.etPanCard.text.clear()
-                binding.etPhoneNumber.text.clear()
                 binding.etName.text.clear()
                 binding.etEmergencyNumber.text.clear()
                 binding.etProfession.text.clear()
 
+                upload_Profile_pic()
+
+                binding.etPhoneNumber.text.clear()
                 Toast.makeText(this@ProfileData, "Profile Data Set Successfully", Toast.LENGTH_SHORT).show()
+
                 finish()
+
                 startActivity(Intent( this, AllTrips::class.java ))
 
-            }.addOnFailureListener{
+            }
+                .addOnFailureListener{
 
                 Toast.makeText(this@ProfileData, "Profile Data Set Unsuccessful", Toast.LENGTH_SHORT).show()
 
@@ -80,6 +90,38 @@ class ProfileData : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun pickImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+
+        if(requestCode==100 && resultCode== RESULT_OK){
+            imageUri=data?.data!!
+            binding.profileImage.setImageURI(data?.data)
+
+        }
+
+    }
+
+    //yeh functoin bnaaya h mene
+    private fun upload_Profile_pic() {
+
+       // imageUri = Uri.parse("android.resource://$packageName/${R.drawable.pancard }")
+        storageReference=FirebaseStorage.getInstance().getReference("image/"+firebaseAuth.currentUser?.phoneNumber)
+        storageReference.putFile(imageUri).addOnSuccessListener {
+
+            Toast.makeText(this@ProfileData, "Profile image uploaded", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener{
+
+                Toast.makeText(this@ProfileData, "Profile image not uploaded", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun readData(){

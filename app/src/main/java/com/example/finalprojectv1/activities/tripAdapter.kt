@@ -2,6 +2,9 @@ package com.example.finalprojectv1.activities
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.media.Image
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,18 +19,17 @@ import com.example.finalprojectv1.ProfileActivity
 import com.example.finalprojectv1.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.profile.view.*
+import kotlinx.android.synthetic.main.trip_item.view.*
+import java.io.File
 
 class tripAdapter(private val context: Context, private val TripList : ArrayList<FetchTrips>) : RecyclerView.Adapter<tripAdapter.MyViewHolder>() {
 
-//    private lateinit var mListner:onItemClickListner
-//    interface onItemClickListner{
-//        fun onItemClick(position:Int, item: String?)
-//    }
-//
-//    fun setOnItemClickListner(listner: onItemClickListner){
-//        mListner = listner
-//    }
+    private  lateinit var storageReference: StorageReference
+    private lateinit var imageUri: Uri
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -40,6 +42,7 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentitem = TripList[position]
 
+
         holder.source.text = currentitem.source
         holder.ph.text = currentitem.phone
         holder.destination.text = currentitem.destination
@@ -48,6 +51,36 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         holder.car.text = currentitem.car
         holder.seat.text = currentitem.seat
         holder.rating.text = "0"
+
+
+        //************changes*************************************************//
+       // val finding_number_id=currentitem.phone
+
+        val imageID = currentitem.phone.toString()
+
+            //it.child("phone_number").value.toString()
+        storageReference = FirebaseStorage.getInstance().getReference("image/$imageID.png")
+
+//        val localfile= File.createTempFile("temp",".jpeg")
+
+        val localfile= File.createTempFile("temp",".png")
+        storageReference.getFile(localfile)
+
+            .addOnSuccessListener {
+                val Bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+
+                holder.p_image.setImageBitmap(Bitmap)
+                Toast.makeText(context, "ho gyi image load", Toast.LENGTH_SHORT).show()
+
+            }.addOnFailureListener {
+                Toast.makeText(context, "image load nhi hui ", Toast.LENGTH_SHORT)
+                    .show()
+
+            }
+
+
+                //  holder.p_image
+
 
 
         holder.destination.setOnClickListener {
@@ -133,7 +166,8 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         val seat : TextView = itemView.findViewById(R.id.tvSeat)
         val rating : TextView = itemView.findViewById(R.id.tvRating)
         val myButton = itemView.findViewById<Button>(R.id.BookBtnAllTrip)
-
+        val p_image= itemView.profile_image_trips
+        //var image = itemView.findViewById(R.id.profile_image_trips)
 
 
 //        init{

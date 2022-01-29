@@ -9,7 +9,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_marginTop="50dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
+        android:id="@+id/profile_image_real"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_gravity="center"
