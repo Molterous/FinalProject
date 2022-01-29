@@ -25,8 +25,9 @@
         android:layout_width="match_parent"
 
         android:layout_height="wrap_content"
+        android:layout_margin="29dp"
         app:layout_constraintBottom_toBottomOf="parent"
-
+        android:background="@drawable/bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/menu" />
 

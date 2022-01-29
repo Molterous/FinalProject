@@ -62,6 +62,7 @@ class AllTrips : AppCompatActivity() {
     }
 
     private fun getUserData() {
+
         dbref = FirebaseDatabase.getInstance().getReference("Form")
 
         dbref.addValueEventListener(object : ValueEventListener {

@@ -3,7 +3,10 @@ package com.example.finalprojectv1
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.Address
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -12,7 +15,10 @@ import com.example.finalprojectv1.databinding.ProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -20,6 +26,8 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ProfileBinding
     private lateinit var database: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
+    private  lateinit var storageReference: StorageReference
+    private lateinit var imageUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +86,25 @@ class ProfileActivity : AppCompatActivity() {
 
 
             if( it.exists() ){
+
+                val imageID=it.child("phone_number").value.toString()
+                storageReference = FirebaseStorage.getInstance().getReference("image/$imageID.png")
+
+                    val localfile= File.createTempFile("temp",".png")
+                    storageReference.getFile(localfile)
+
+                        .addOnSuccessListener {
+                            val Bitmap =BitmapFactory.decodeFile(localfile.absolutePath)
+
+                            binding.profileImageReal.setImageBitmap(Bitmap)
+                            Toast.makeText(this@ProfileActivity, "ho gyi image load", Toast.LENGTH_SHORT).show()
+
+                        }.addOnFailureListener{
+                            Toast.makeText(this@ProfileActivity, "image load nhi hui ", Toast.LENGTH_SHORT).show()
+
+
+
+                        }
 
                 fName = it.child("name").value.toString()
                 AadharCard = it.child("aadhaar_card").value.toString()

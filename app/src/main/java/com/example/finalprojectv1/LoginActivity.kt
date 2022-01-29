@@ -48,7 +48,9 @@ class LoginActivity : AppCompatActivity() {
 
         if( bool ){
             Toast.makeText(this, "Welcome Back", Toast.LENGTH_LONG).show()
+
             startActivity(Intent( this, AllTrips::class.java ))
+            finish()
         }
 
         binding.phoneL1.visibility = View.VISIBLE
