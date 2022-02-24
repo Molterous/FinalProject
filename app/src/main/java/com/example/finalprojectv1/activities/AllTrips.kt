@@ -5,9 +5,11 @@ package com.example.finalprojectv1.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalprojectv1.ProfileActivity
@@ -18,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.trip_item.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AllTrips : AppCompatActivity() {
 
@@ -28,6 +32,7 @@ class AllTrips : AppCompatActivity() {
     private lateinit var userRecyclerview: RecyclerView
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var userArrayList: ArrayList<FetchTrips>
+    private lateinit var tempArrayList:ArrayList<FetchTrips>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +45,6 @@ class AllTrips : AppCompatActivity() {
             when(it.itemId){
                 R.id.ic_Add_Trip-> startActivity(Intent( this, Trips::class.java ))
                 R.id.ic_profile->startActivity(Intent( this, ProfileActivity::class.java ))
-//                R.id.ic_All_Trip-> startActivity(Intent(this,AllTrips::class.java))
                 R.id.ic_chat->startActivity(Intent( this, ChatList::class.java ))
             }
             true
@@ -52,8 +56,50 @@ class AllTrips : AppCompatActivity() {
         userRecyclerview.setHasFixedSize(true)
 
         userArrayList = arrayListOf<FetchTrips>()
+        //initialize comment
+        tempArrayList= arrayListOf<FetchTrips>()
+
         getUserData()
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_item,menu)
+        val item=menu?.findItem(R.id.search_action)
+        val searchView=item?.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                tempArrayList.clear()
+                val searchText = newText!!.toLowerCase(Locale.getDefault())
+                if (searchText.isNotEmpty()){
+                    userArrayList.forEach {
+                        if ( it.destination?.toLowerCase(Locale.getDefault())!!.contains(searchText)){
+                            tempArrayList.add(it)
+                        }
+                    }
+                    userRecyclerview.adapter!!.notifyDataSetChanged()
+                }
+                else{
+                    tempArrayList.clear()
+                    tempArrayList.addAll(userArrayList)
+                    userRecyclerview.adapter!!.notifyDataSetChanged()
+
+                }
+
+
+                return false
+            }
+
+        })
+
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onBackPressed() {
@@ -76,8 +122,13 @@ class AllTrips : AppCompatActivity() {
                         userArrayList.add(user!!)
 
                     }
+                    //.........cmmnt2..........
+                    tempArrayList.addAll(userArrayList)
+                    //.....................
 
-                    userRecyclerview.adapter = tripAdapter(this@AllTrips,userArrayList)
+                   // userRecyclerview.adapter = tripAdapter(this@AllTrips,userArrayList)
+
+                    userRecyclerview.adapter = tripAdapter(this@AllTrips,tempArrayList)
 
 
                 }

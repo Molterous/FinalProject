@@ -53,15 +53,11 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         holder.rating.text = "0"
 
 
-        //************changes*************************************************//
-       // val finding_number_id=currentitem.phone
 
         val imageID = currentitem.phone.toString()
 
-            //it.child("phone_number").value.toString()
         storageReference = FirebaseStorage.getInstance().getReference("image/$imageID.png")
 
-//        val localfile= File.createTempFile("temp",".jpeg")
 
         val localfile= File.createTempFile("temp",".png")
         storageReference.getFile(localfile)
@@ -79,7 +75,6 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
             }
 
 
-                //  holder.p_image
 
 
 
@@ -94,15 +89,6 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
             intent.putExtra("ExtraPhone",phone)
             //intent.putExtra("ExtraProfile",phone)
             context.startActivity(intent)
-
-//                Intent(context,ProfileActivity::class.java).also{
-//                    it.putExtra("ExtraPhone",isprofile)
-//                    it.putExtra("ExtraProfile",phone)
-//                    startActivity(it)
-//
-//            }
-            //      val =true
-//
 
             holder.myButton.setOnClickListener {
 
@@ -146,7 +132,20 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
             }
 
         }
-        
+        holder.c_image.setOnClickListener {
+//        val dest = holder.destination.text.toString()
+            val sour = holder.source.toString()
+
+            val source = currentitem.source
+            val destination= currentitem.destination
+            val intent = Intent(context, FetchImages::class.java)
+            intent.putExtra("source",source)
+            intent.putExtra("destination",destination)
+            context.startActivity(intent)
+
+        }
+
+
 
     }
 
@@ -167,16 +166,7 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         val rating : TextView = itemView.findViewById(R.id.tvRating)
         val myButton = itemView.findViewById<Button>(R.id.BookBtnAllTrip)
         val p_image= itemView.profile_image_trips
-        //var image = itemView.findViewById(R.id.profile_image_trips)
-
-
-//        init{
-//            itemView.setOnClickListener {
-//                val currentitem = TripList[adapterPosition]
-//
-//                listner.onItemClick(adapterPosition,currentitem.phone)
-//            }
- //       }
+        val c_image=itemView.CarImage
 
     }
 
