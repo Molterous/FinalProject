@@ -92,6 +92,7 @@ class ProfileData : AppCompatActivity() {
 
     }
 
+
     private fun pickImageFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -114,7 +115,7 @@ class ProfileData : AppCompatActivity() {
     private fun upload_Profile_pic() {
 
        // imageUri = Uri.parse("android.resource://$packageName/${R.drawable.pancard }")
-        storageReference=FirebaseStorage.getInstance().getReference("image/"+firebaseAuth.currentUser?.phoneNumber)
+        storageReference=FirebaseStorage.getInstance().getReference("image/"+firebaseAuth.currentUser?.phoneNumber+".png")
         storageReference.putFile(imageUri).addOnSuccessListener {
 
             Toast.makeText(this@ProfileData, "Profile image uploaded", Toast.LENGTH_SHORT).show()

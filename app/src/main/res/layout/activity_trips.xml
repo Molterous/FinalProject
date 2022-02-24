@@ -239,7 +239,27 @@
                 android:id="@+id/seatET"
                 />
 
+
         </LinearLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_images"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:theme="@style/AppTheme.Green"
+            android:layout_gravity="center_horizontal"
+            android:text="Add Car Images"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
