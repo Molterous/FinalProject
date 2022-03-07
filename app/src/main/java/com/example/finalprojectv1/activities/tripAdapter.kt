@@ -1,5 +1,7 @@
 package com.example.finalprojectv1.activities
 
+import android.app.Activity
+import android.app.Instrumentation
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -12,24 +14,33 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.RecyclerView
-import com.example.finalprojectv1.LoginActivity
 import com.example.finalprojectv1.ProfileActivity
 import com.example.finalprojectv1.R
+import com.example.finalprojectv1.utils.OnIntentReceived
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.profile.view.*
 import kotlinx.android.synthetic.main.trip_item.view.*
+import kotlinx.coroutines.NonDisposableHandle.parent
 import java.io.File
 
-class tripAdapter(private val context: Context, private val TripList : ArrayList<FetchTrips>) : RecyclerView.Adapter<tripAdapter.MyViewHolder>() {
+class tripAdapter(private val context: Context, private val TripList : ArrayList<FetchTrips>) : RecyclerView.Adapter<tripAdapter.MyViewHolder>(), OnIntentReceived {
 
     private  lateinit var storageReference: StorageReference
     private lateinit var imageUri: Uri
+    val id = 1
 
+
+//    private val secondActivityWithResult = mIntentInterface.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+//        if (result.isResultOk()){
+//            if (result.data?.hasExtra(RESULT_TEXT)!!){
+////                resultTextView.text = result.data!!.extras?.getString(RESULT_TEXT) ?: "No Result Provided"
+//            }
+//        }
+//    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -52,8 +63,6 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         holder.seat.text = currentitem.seat
         holder.rating.text = "0"
 
-
-
         val imageID = currentitem.phone.toString()
 
         storageReference = FirebaseStorage.getInstance().getReference("image/$imageID.png")
@@ -75,9 +84,6 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
             }
 
 
-
-
-
         holder.destination.setOnClickListener {
 
           //  val isprofile = true
@@ -90,48 +96,19 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
             //intent.putExtra("ExtraProfile",phone)
             context.startActivity(intent)
 
-            holder.myButton.setOnClickListener {
+        }
 
-                var database = FirebaseDatabase.getInstance().getReference("List")
+        holder.myButton.setOnClickListener {
 
-
-                val ph = holder.ph.text.toString()
-                val dest = holder.destination.text.toString()
-                val sour = holder.source.text.toString()
-                val time = holder.time.text.toString()
-                val date = holder.date.text.toString()
-
-
-
-                val firebaseAuth = FirebaseAuth.getInstance()
-                var phone = (firebaseAuth.currentUser?.phoneNumber).toString()
-
-                if( !ph.equals(phone, true) ) {
-
-                    database.child(ph).child( dest+"_"+sour+"_"+date+"_"+time ).child(phone).setValue( "N/A" ).addOnSuccessListener {
-                        Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show()
-                    }.addOnFailureListener{
-                        Toast.makeText(context,"Failure",Toast.LENGTH_SHORT).show()
-                    }
-
-                    database.child(phone).child( dest+"_"+sour+"_"+date+"_"+time ).child(ph).setValue( "N/A" ).addOnSuccessListener {
-                        Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show()
-                    }.addOnFailureListener{
-                        Toast.makeText(context,"Failure",Toast.LENGTH_SHORT).show()
-                    }
-
-                }else{
-                    Toast.makeText( context,"Yours own trip, Booking not possible !!"
-                                            ,Toast.LENGTH_LONG).show()
-                }
-
-                val context = context
-                val intent = Intent( context, ChatList::class.java)
-                context.startActivity(intent)
+            if(context is AllTrips) {
+                (context as AllTrips).openYourActivity(holder)
 
             }
-
         }
+
+
+
+
         holder.c_image.setOnClickListener {
 //        val dest = holder.destination.text.toString()
             val sour = holder.source.toString()
@@ -144,8 +121,6 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
             context.startActivity(intent)
 
         }
-
-
 
     }
 
@@ -168,6 +143,52 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         val p_image= itemView.profile_image_trips
         val c_image=itemView.CarImage
 
+    }
+
+    fun putData(userLocation: String, holder: MyViewHolder){
+
+        var database = FirebaseDatabase.getInstance().getReference("List")
+
+
+        val ph = holder.ph.text.toString()
+        val dest = holder.destination.text.toString()
+        val sour = holder.source.text.toString()
+        val time = holder.time.text.toString()
+        val date = holder.date.text.toString()
+
+
+        val firebaseAuth = FirebaseAuth.getInstance()
+        var phone = (firebaseAuth.currentUser?.phoneNumber).toString()
+
+        if( !ph.equals(phone, true) ) {
+
+            database.child(ph).child( dest+"_"+sour+"_"+date+"_"+time ).child(phone).setValue( userLocation ).addOnSuccessListener {
+                Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener{
+                Toast.makeText(context,"Failure",Toast.LENGTH_SHORT).show()
+            }
+
+            database.child(phone).child( dest+"_"+sour+"_"+date+"_"+time ).child(ph).setValue( userLocation ).addOnSuccessListener {
+                Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener{
+                Toast.makeText(context,"Failure",Toast.LENGTH_SHORT).show()
+            }
+
+        }else{
+            Toast.makeText( context,"Yours own trip, Booking not possible !!"
+                ,Toast.LENGTH_LONG).show()
+        }
+
+        val context = context
+        val intent = Intent( context, ChatList::class.java)
+        context.startActivity(intent)
+
+    }
+
+    override fun onIntent(lang: String, long: String, holder: MyViewHolder) {
+        val loc = lang+"$"+long
+        Toast.makeText( context, loc, Toast.LENGTH_LONG).show()
+        putData( loc , holder)
     }
 
 }

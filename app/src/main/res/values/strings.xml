@@ -9,4 +9,6 @@
     <string name="invalid_otp">Invalid OTP</string>
     <string name="login_failed">"Login failed"</string>
     <string name="didn_t_get_otp_resend_it">Didn\'t get OTP? <b>Resend it</b>.</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="YOUR_GOOGLE_MAPS_API_KEY">AIzaSyB9vpubNjuxyLj_NS8NQawqrjuVifLyU50</string>
 </resources>

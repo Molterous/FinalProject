@@ -48,6 +48,7 @@ class ChatMessage : AppCompatActivity() {
 
         messageBox = binding.etMessageBox
         sendButton = binding.sendButtom
+
         messageRecyclerView = binding.messageRecyclerView
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this, messageList)

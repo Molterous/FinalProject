@@ -68,6 +68,7 @@ class ChatList : AppCompatActivity() {
                 if (snapshot.exists()) {
 
                     userArrayList.clear()
+
                     for (userSnapshot in snapshot.children) {
 
                         var tempUser = userSnapshot.getValue().toString()
