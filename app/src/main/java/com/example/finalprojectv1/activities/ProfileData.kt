@@ -53,7 +53,7 @@ class ProfileData : AppCompatActivity() {
             val email=binding.etEmailId.text.toString()
             val emergencyNumber=binding.etEmergencyNumber.text.toString()
             val PanCard=binding.etPanCard.text.toString()
-            val aadharCard=binding.etPanCard.text.toString()
+            val aadharCard=binding.etAdhaarCard.text.toString()
             val profession= binding.etProfession.text.toString()
             val address=binding.etAddress.text.toString()
 
@@ -75,7 +75,7 @@ class ProfileData : AppCompatActivity() {
                 upload_Profile_pic()
 
                 binding.etPhoneNumber.text.clear()
-                Toast.makeText(this@ProfileData, "Profile Data Set Successfully", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@ProfileData, "Profile Data Set Successfully", Toast.LENGTH_SHORT).show()
 
                 finish()
 
@@ -84,7 +84,7 @@ class ProfileData : AppCompatActivity() {
             }
                 .addOnFailureListener{
 
-                Toast.makeText(this@ProfileData, "Profile Data Set Unsuccessful", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@ProfileData, "Profile Data Set Unsuccessful", Toast.LENGTH_SHORT).show()
 
             }
 
@@ -118,10 +118,10 @@ class ProfileData : AppCompatActivity() {
         storageReference=FirebaseStorage.getInstance().getReference("image/"+firebaseAuth.currentUser?.phoneNumber+".png")
         storageReference.putFile(imageUri).addOnSuccessListener {
 
-            Toast.makeText(this@ProfileData, "Profile image uploaded", Toast.LENGTH_SHORT).show()
+         //   Toast.makeText(this@ProfileData, "Profile image uploaded", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener{
 
-                Toast.makeText(this@ProfileData, "Profile image not uploaded", Toast.LENGTH_SHORT).show()
+           //     Toast.makeText(this@ProfileData, "Profile image not uploaded", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -134,12 +134,6 @@ class ProfileData : AppCompatActivity() {
 
             if( it.exists() ){
 
-                //yaha se change kr rha hu
-                //val fname=it.child("name").value.toString()
-                // val
-
-
-                //
 
                 val fName = it.child("name").value.toString()
                 val AadharCard = it.child("Aadhaar_card").value.toString()

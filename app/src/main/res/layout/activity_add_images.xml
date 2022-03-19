@@ -13,26 +13,46 @@
     tools:context=".AddImages">
 
     <ImageView
-        android:src="@drawable/pic_profile"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/bg"
+        android:src="@drawable/default_car"
         android:id="@+id/img_1"
         android:layout_width="400dp"
         android:layout_height="400dp"
         />
 
     <ImageView
-        android:src="@drawable/pic_profile"
+
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:src="@drawable/default2"
         android:id="@+id/img_2"
         android:layout_width="400dp"
         android:layout_height="400dp"
         />
     <ImageView
-        android:src="@drawable/pic_profile"
+
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:src="@drawable/default3"
         android:id="@+id/img_3"
         android:layout_width="400dp"
         android:layout_height="400dp"
         />
     <ImageView
-        android:src="@drawable/pic_profile"
+
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:src="@drawable/car_model_default"
         android:id="@+id/img_4"
         android:layout_width="400dp"
         android:layout_height="400dp"
