@@ -75,11 +75,11 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
                 val Bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
 
                 holder.p_image.setImageBitmap(Bitmap)
-                Toast.makeText(context, "ho gyi image load", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, "ho gyi image load", Toast.LENGTH_SHORT).show()
 
             }.addOnFailureListener {
-                Toast.makeText(context, "image load nhi hui ", Toast.LENGTH_SHORT)
-                    .show()
+  //              Toast.makeText(context, "image load nhi hui ", Toast.LENGTH_SHORT)
+    //                .show()
 
             }
 

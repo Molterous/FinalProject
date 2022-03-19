@@ -97,11 +97,11 @@ class ProfileActivity : AppCompatActivity() {
                             val Bitmap =BitmapFactory.decodeFile(localfile.absolutePath)
 
                             binding.profileImageReal.setImageBitmap(Bitmap)
-                            Toast.makeText(this@ProfileActivity, "ho gyi image load", Toast.LENGTH_SHORT).show()
+                          //  Toast.makeText(this@ProfileActivity, "ho gyi image load", Toast.LENGTH_SHORT).show()
 
                         }.addOnFailureListener{
-                            Toast.makeText(this@ProfileActivity, "image load nhi hui ", Toast.LENGTH_SHORT).show()
-
+                     //       Toast.makeText(this@ProfileActivity, "image load nhi hui ", Toast.LENGTH_SHORT).show()
+//
 
 
                         }
@@ -116,10 +116,12 @@ class ProfileActivity : AppCompatActivity() {
                 Profession = it.child("profession").value.toString()
 
 
-                Toast.makeText(this@ProfileActivity, "Fetch Successful", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@ProfileActivity, "Fetch Successful", Toast.LENGTH_SHORT).show()
 
             }
 
+
+            binding.tvUserName.text="@"+fName
             binding.tvName.text = fName
             binding.tvAddress.text = Address
             binding.tvPhoneNumber.text = PhoneNumber
@@ -131,7 +133,7 @@ class ProfileActivity : AppCompatActivity() {
 
         }.addOnFailureListener {
 
-            Toast.makeText(this@ProfileActivity, "Fetch Unsuccessful", Toast.LENGTH_SHORT).show()
+  //          Toast.makeText(this@ProfileActivity, "Fetch Unsuccessful", Toast.LENGTH_SHORT).show()
 
         }
 

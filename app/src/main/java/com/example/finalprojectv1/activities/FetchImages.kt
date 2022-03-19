@@ -58,10 +58,10 @@ class FetchImages : AppCompatActivity() {
                         binding.Fetchimg4.setImageBitmap(Bitmap)
 
                     }
-                    Toast.makeText(this, "Car image  load ho gyi", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Car image  load ho gyi", Toast.LENGTH_SHORT).show()
 
                 }.addOnFailureListener{
-                    Toast.makeText(this, "Car image Load nhi hui ", Toast.LENGTH_SHORT).show()
+  //                  Toast.makeText(this, "Car image Load nhi hui ", Toast.LENGTH_SHORT).show()
 
 
 

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/add_trip_bg"
+    android:background="@color/white"
     >
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:orientation="vertical"
-        android:background="#44242424"
+        android:background="@drawable/linear_curve_bg"
         android:layout_margin="8dp"
         >
 
@@ -22,11 +24,12 @@
         >
 
         <TextView
+            android:paddingLeft="7dp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:layout_marginStart="8dp"
             android:textStyle="bold"
             android:id="@+id/source_tv"
@@ -41,8 +44,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:id="@+id/source_et"
+            android:textSize="16sp"            android:id="@+id/source_et"
             />
 
     </LinearLayout>
@@ -54,12 +56,13 @@
 
 
         <TextView
+            android:paddingLeft="7dp"
+
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_marginStart="8dp"
+            android:textSize="16sp"            android:layout_marginStart="8dp"
             android:textStyle="bold"
             android:id="@+id/destination_tv"
             android:text="Destination"
@@ -73,8 +76,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:id="@+id/destination_et"
+            android:textSize="16sp"            android:id="@+id/destination_et"
             />
 
 
@@ -88,10 +90,11 @@
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:paddingLeft="7dp"
+
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_marginStart="8dp"
+            android:textSize="16sp"            android:layout_marginStart="8dp"
             android:textStyle="bold"
             android:id="@+id/date_tv"
             android:text="Date "
@@ -113,8 +116,8 @@
             android:hint="Set Date"
             android:drawableEnd="@drawable/ic_baseline_date_range_24"
             android:focusable="false"
-            android:textSize="18sp"
-            android:drawableTint="@color/design_default_color_primary"
+            android:textSize="16sp"
+            android:drawableTint="#276739"
             android:id="@+id/date_et"
             />
 
@@ -131,7 +134,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:layout_marginStart="8dp"
             android:textStyle="bold"
             android:visibility="gone"
@@ -154,7 +157,7 @@
             android:drawableEnd="@drawable/ic_baseline_access_time_24"
             android:focusable="false"
             android:visibility="gone"
-            android:textSize="18sp"
+            android:textSize="14sp"
 
             android:drawableTint="@color/design_default_color_primary"
             android:id="@+id/time_et"
@@ -169,12 +172,13 @@
             >
 
             <TextView
+                android:paddingLeft="7dp"
+
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginStart="8dp"
+                android:textSize="16sp"                android:layout_marginStart="8dp"
                 android:textStyle="bold"
                 android:id="@+id/carTV"
                 android:text="Car"
@@ -188,8 +192,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:id="@+id/carET"
+                android:textSize="16sp"                android:id="@+id/carET"
                 />
 
         </LinearLayout>
@@ -216,12 +219,13 @@
             >
 
             <TextView
+                android:paddingLeft="7dp"
+
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginStart="8dp"
+                android:textSize="16sp"                android:layout_marginStart="8dp"
                 android:textStyle="bold"
                 android:id="@+id/seatTv"
                 android:text="Seat"
@@ -235,8 +239,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:id="@+id/seatET"
+                android:textSize="16sp"                android:id="@+id/seatET"
                 />
 
 
@@ -254,8 +257,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/add_images"
             android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:theme="@style/AppTheme.Green"
+            android:layout_marginTop="10dp"
+            android:textSize="15dp"
+            android:background="@drawable/button_bg"
             android:layout_gravity="center_horizontal"
             android:text="Add Car Images"
             />
@@ -270,11 +274,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:theme="@style/AppTheme.Green"
+            android:background="@drawable/button_bg"
             android:layout_gravity="center_horizontal"
             android:text="Post ->"
-            android:padding="5dp"
+            android:textSize="15dp"
+            android:layout_marginTop="5dp"
             />
 
 

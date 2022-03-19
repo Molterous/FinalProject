@@ -7,7 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="GREY">#535553</color>
 
+
+    <color name="green">#43A047</color>
     <color name="trip_bottom_yellow">#FAF354</color>
 
     <color name="trip_button_green">#00FF19</color>
