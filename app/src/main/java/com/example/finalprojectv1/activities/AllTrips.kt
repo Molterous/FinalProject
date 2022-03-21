@@ -46,7 +46,7 @@ class AllTrips : AppCompatActivity() {
             when(it.itemId){
                 R.id.ic_Add_Trip-> startActivity(Intent( this, Trips::class.java ))
                 R.id.ic_profile->startActivity(Intent( this, ProfileActivity::class.java ))
-                R.id.ic_chat->startActivity(Intent( this, ChatList::class.java ))
+                R.id.ic_chat->startActivity(Intent( this, ChatTripListView::class.java ))
             }
             true
         }

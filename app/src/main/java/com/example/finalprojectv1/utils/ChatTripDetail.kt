@@ -6,6 +6,7 @@ class ChatTripDetail {
     var source : String ?= null
     var date : String ?= null
     var time : String ?= null
+    var str : String ?=null
 
 
     constructor(){}
@@ -17,5 +18,12 @@ class ChatTripDetail {
         this.time = time
     }
 
+    public fun getstr(): String?{
+        return str
+    }
+
+    public fun setstr(value : String){
+        str = value
+    }
 
 }

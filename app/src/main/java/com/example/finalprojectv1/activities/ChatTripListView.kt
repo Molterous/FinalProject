@@ -7,29 +7,31 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalprojectv1.Adapters.TripDetailAdapter
+import com.example.finalprojectv1.Adapters.TripListAdapter
 import com.example.finalprojectv1.ProfileActivity
 import com.example.finalprojectv1.R
 import com.example.finalprojectv1.databinding.ActivityChatListBinding
+import com.example.finalprojectv1.databinding.ActivityChatTripListViewBinding
+import com.example.finalprojectv1.utils.ChatTripDetail
 import com.example.finalprojectv1.utils.UserNameLocation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.collections.ArrayList
 
-class ChatList : AppCompatActivity() {
+class ChatTripListView : AppCompatActivity() {
 
-    private lateinit var binding : ActivityChatListBinding
+    private lateinit var binding : ActivityChatTripListViewBinding
     private lateinit var database : DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var userRecyclerview: RecyclerView
-    private lateinit var userArrayList: ArrayList<UserNameLocation>
-    private lateinit var tripStr : String
+    private lateinit var userArrayList: ArrayList<ChatTripDetail>
 
-    private val TAG = "CHAT_TAG"
+    private val TAG = "CHAT_LIST_TAG"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityChatListBinding.inflate(layoutInflater)
+        binding = ActivityChatTripListViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -39,13 +41,11 @@ class ChatList : AppCompatActivity() {
                 R.id.ic_Add_Trip-> startActivity(Intent( this, Trips::class.java ))
                 R.id.ic_profile->startActivity(Intent( this, ProfileActivity::class.java ))
                 R.id.ic_All_Trip-> startActivity(Intent(this,AllTrips::class.java))
-//                R.id.ic_chat->startActivity(Intent( this, ChatList::class.java ))
+//                R.id.ic_chat->startActivity(Intent( this, ChatTripListView::class.java ))
             }
             true
         }
         //navbar end
-
-        tripStr = intent.getStringExtra("Key").toString()
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -53,7 +53,7 @@ class ChatList : AppCompatActivity() {
         userRecyclerview.layoutManager = LinearLayoutManager(this)
         userRecyclerview.setHasFixedSize(true)
 
-        userArrayList = arrayListOf<UserNameLocation>()
+        userArrayList = arrayListOf<ChatTripDetail>()
         tripData()
 
     }
@@ -66,37 +66,40 @@ class ChatList : AppCompatActivity() {
         database.child( (firebaseAuth.currentUser?.phoneNumber).toString() ).addValueEventListener(
             object : ValueEventListener {
 
-            override fun onDataChange(snapshot: DataSnapshot) {
+                override fun onDataChange(snapshot: DataSnapshot) {
 
-                if (snapshot.exists()) {
+                    if (snapshot.exists()) {
 
-                    userArrayList.clear()
+                        userArrayList.clear()
 
-                    for (userSnapshot in snapshot.children) {
+                        for (userSnapshot in snapshot.children) {
 
-                        if( userSnapshot.key.toString() != tripStr)
-                            continue;
+                            val tempStr = userSnapshot.key.toString()
+                            val tempUser = ( tempStr ).split("_").toTypedArray()
+                            Log.d(TAG, "Received Data: $tempUser\n")
 
-                        val tempUser = userSnapshot.getValue().toString()
-                        Log.d(TAG, "Received Data: $tempUser\n")
-                        userArrayList.add( UserNameLocation( tempUser.substring(1,14), tempUser ) )
+                            val listItem = ChatTripDetail(
+                                tempUser.get(0),
+                                tempUser.get(1),
+                                tempUser.get(2),
+                                tempUser.get(3),
+                            )
+                            listItem.setstr(tempStr)
+                            userArrayList.add( listItem )
 
-//                        user = tempUser.split("_").toTypedArray()
-//                        userArrayList.add( ChatTripDetail( user[0], user[1], user[2], user[3]) )
-//                        Toast.makeText(this@ChatList, tempUser, Toast.LENGTH_LONG).show()
+                        }
+
+                        userRecyclerview.adapter = TripListAdapter(this@ChatTripListView,
+                            userArrayList)
 
                     }
-
-                    userRecyclerview.adapter = TripDetailAdapter(this@ChatList,userArrayList)
-
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
 
-        })
+            })
     }
 
 }

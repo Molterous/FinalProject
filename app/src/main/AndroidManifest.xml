@@ -46,6 +46,9 @@
             android:name=".AddImages"
             android:exported="false" />
         <activity
+            android:name=".activities.ChatTripListView"
+            android:exported="false" />
+        <activity
             android:name=".activities.ChatMessage"
             android:exported="false" />
         <activity
