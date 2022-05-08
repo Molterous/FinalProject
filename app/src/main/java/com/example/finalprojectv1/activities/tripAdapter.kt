@@ -107,8 +107,6 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         }
 
 
-
-
         holder.c_image.setOnClickListener {
 //        val dest = holder.destination.text.toString()
             val sour = holder.source.toString()
