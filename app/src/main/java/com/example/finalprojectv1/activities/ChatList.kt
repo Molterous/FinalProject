@@ -11,19 +11,25 @@ import com.example.finalprojectv1.ProfileActivity
 import com.example.finalprojectv1.R
 import com.example.finalprojectv1.databinding.ActivityChatListBinding
 import com.example.finalprojectv1.utils.UserNameLocation
+import com.example.finalprojectv1.utils.gMapIntent
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_chat_list.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.bottom_navigation
 import kotlin.collections.ArrayList
 
-class ChatList : AppCompatActivity() {
+class ChatList : AppCompatActivity(){
 
     private lateinit var binding : ActivityChatListBinding
     private lateinit var database : DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var userRecyclerview: RecyclerView
+    private lateinit var mIntentReceived : gMapIntent
     private lateinit var userArrayList: ArrayList<UserNameLocation>
     private lateinit var tripStr : String
+    private lateinit var src : String
+    private lateinit var dest : String
 
     private val TAG = "CHAT_TAG"
 
@@ -46,6 +52,9 @@ class ChatList : AppCompatActivity() {
         //navbar end
 
         tripStr = intent.getStringExtra("Key").toString()
+        val tempLoc = ( tripStr ).split("_").toTypedArray()
+        src = tempLoc.get(0)
+        dest = tempLoc.get(1)
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -55,6 +64,10 @@ class ChatList : AppCompatActivity() {
 
         userArrayList = arrayListOf<UserNameLocation>()
         tripData()
+
+        floating_intent_button.setOnClickListener {
+            mIntentReceived.onIntent( src, dest );
+        }
 
     }
 
@@ -79,7 +92,9 @@ class ChatList : AppCompatActivity() {
 
                         val tempUser = userSnapshot.getValue().toString()
                         Log.d(TAG, "Received Data: $tempUser\n")
-                        userArrayList.add( UserNameLocation( tempUser.substring(1,14), tempUser ) )
+
+                        userArrayList.add( UserNameLocation( tempUser.substring(1,14),
+                            tempUser.substring(15) ) )
 
 //                        user = tempUser.split("_").toTypedArray()
 //                        userArrayList.add( ChatTripDetail( user[0], user[1], user[2], user[3]) )
@@ -88,6 +103,7 @@ class ChatList : AppCompatActivity() {
                     }
 
                     userRecyclerview.adapter = TripDetailAdapter(this@ChatList,userArrayList)
+                    mIntentReceived = userRecyclerview.adapter as TripDetailAdapter
 
                 }
             }
