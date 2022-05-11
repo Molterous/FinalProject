@@ -12,7 +12,7 @@
     <LinearLayout
 
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/linear_curve_bg"
         android:layout_margin="8dp"
@@ -170,6 +170,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
+            <TextView
+                android:paddingLeft="7dp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16sp"                android:layout_marginStart="8dp"
+                android:text="No Car"
+                />
+            <CheckBox
+                android:layout_marginLeft="62dp"
+                android:layout_weight="3"
+                android:id="@+id/have_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
             <TextView
                 android:paddingLeft="7dp"
@@ -279,6 +303,7 @@
             android:text="Post ->"
             android:textSize="15dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             />
 
 
@@ -305,6 +330,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
 
+        android:visibility="invisible"
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

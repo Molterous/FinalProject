@@ -26,11 +26,12 @@
             android:orientation="horizontal">
 
 
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Date : "
+                android:text="Date  "
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
@@ -43,16 +44,16 @@
                 android:layout_marginStart="8dp"
                 android:text="20/12/2021"
                 android:textColor="@color/black"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="Time : "
+                android:text="Time "
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"/>
 
             <TextView
@@ -63,11 +64,13 @@
                 android:layout_marginStart="8dp"
                 android:text="05:00 PM"
                 android:textColor="@color/black"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
         </LinearLayout>
 
         <LinearLayout
+
+        android:background="#B1EDB4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -85,18 +88,17 @@
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
-            <TextView
-                android:layout_width="0dp"
+            <ImageView
+
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="->"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="25sp"/>
+                android:paddingTop="7dp"
+                android:paddingBottom="2dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/signpost"
+                />
 
             <TextView
                 android:id="@+id/tvDestinationC"
@@ -108,7 +110,7 @@
                 android:text="Rampur"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
         </LinearLayout>
 

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="#44242424"
-
-     android:layout_margin="16dp"
-
+    android:layout_margin="16dp"
     >
 
     <LinearLayout
@@ -198,6 +197,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/car_tv"
                 android:paddingLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -219,6 +219,7 @@
                 />
 
             <TextView
+                android:id="@+id/seat_tv"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -254,6 +255,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/card_lv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -304,23 +306,34 @@
             </LinearLayout>
             <LinearLayout
 
-                android:background="@drawable/bottom_curve_bg"
+                android:id="@+id/lv_2"
+
+
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:orientation="horizontal"
                 >
 
                 <TextView
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:id="@+id/CarImage"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:paddingLeft="10dp"
+                    android:paddingLeft="7dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Car Image"
                     />
+                <ImageView
+                    android:layout_weight="1"
+                    android:id="@+id/call_id"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_local_phone_24"
+                    />
+
+
 
                 <Button
 
@@ -328,7 +341,7 @@
                     android:textSize="16sp"
                     android:layout_marginRight="12dp"
                     android:id="@+id/BookBtnAllTrip"
-                    android:layout_width="15dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:theme="@style/AppTheme.Green"
                     android:text="Book"
