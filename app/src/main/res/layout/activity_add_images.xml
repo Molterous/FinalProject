@@ -12,52 +12,77 @@
     android:layout_height="match_parent"
     tools:context=".AddImages">
 
-    <ImageView
-        android:paddingRight="20dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:background="@drawable/bg"
-        android:src="@drawable/default_car"
-        android:id="@+id/img_1"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        />
+    <androidx.cardview.widget.CardView
 
-    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="15dp"
+        android:elevation="10dp">
 
-        android:paddingRight="20dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:src="@drawable/default2"
-        android:id="@+id/img_2"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        />
-    <ImageView
+        <ImageView
+            android:id="@+id/img_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/default3"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            />
+    </androidx.cardview.widget.CardView>
 
-        android:paddingRight="20dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:src="@drawable/default3"
-        android:id="@+id/img_3"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        />
-    <ImageView
+    <androidx.cardview.widget.CardView
 
-        android:paddingRight="20dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:src="@drawable/car_model_default"
-        android:id="@+id/img_4"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="15dp"
+        android:elevation="10dp">
 
+        <ImageView
+            android:id="@+id/img_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/default_car"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="15dp"
+        android:elevation="10dp">
+
+        <ImageView
+            android:id="@+id/img_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/default2"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="15dp"
+        android:elevation="10dp">
+
+        <ImageView
+            android:id="@+id/img_4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/car_model_default"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            />
+    </androidx.cardview.widget.CardView>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>
