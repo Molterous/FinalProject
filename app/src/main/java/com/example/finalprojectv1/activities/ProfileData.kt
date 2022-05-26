@@ -169,7 +169,6 @@ class ProfileData : AppCompatActivity() {
                 val editEmergency: EditText = findViewById(R.id.et_emergency_number)
                 editEmergency.setText(EmergencyNumber)
 
-
             }
 
         }.addOnFailureListener {
