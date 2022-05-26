@@ -9,6 +9,7 @@ import android.location.Address
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.example.finalprojectv1.databinding.ActivityProfileBinding
 import com.example.finalprojectv1.databinding.ProfileBinding
@@ -35,7 +36,6 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
         lateinit var phone:String
         firebaseAuth = FirebaseAuth.getInstance()
         val bundle :Bundle ?=intent.extras
@@ -58,6 +58,11 @@ class ProfileActivity : AppCompatActivity() {
 //        address2.text=address
 
         readData( phone)
+        var ph = (firebaseAuth.currentUser?.phoneNumber).toString()
+
+        if( !phone.equals(ph, true) ) {
+            binding.LogoutBtn.visibility = View.GONE
+        }
 
         binding.LogoutBtn.setOnClickListener {
 
