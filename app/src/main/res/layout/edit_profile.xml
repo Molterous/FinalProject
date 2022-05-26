@@ -17,6 +17,7 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_gravity="center"
+        android:src="@drawable/ic_action_name"
         app:civ_border_width="1dp"
         app:civ_border_color="#FFFFFF"/>
 
@@ -224,7 +225,7 @@
             android:textSize="19sp"
 
             android:id="@+id/et_profession"
-            android:hint="92XXXXXXXXXXXX"
+            android:hint="Student"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />

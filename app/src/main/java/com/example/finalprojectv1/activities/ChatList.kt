@@ -53,8 +53,14 @@ class ChatList : AppCompatActivity(){
 
         tripStr = intent.getStringExtra("Key").toString()
         val tempLoc = ( tripStr ).split("_").toTypedArray()
-        src = tempLoc.get(0)
-        dest = tempLoc.get(1)
+        try{
+            src = tempLoc.get(0)
+            dest = tempLoc.get(1)
+        }catch(e: Exception){
+            src = "N/A"
+            dest = "N/A"
+        }
+
 
         firebaseAuth = FirebaseAuth.getInstance()
 

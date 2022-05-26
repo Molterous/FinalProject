@@ -131,3 +131,4 @@ class TripDetailAdapter(private val context: Context, private val DetList : Arra
     }
 
 }
+
