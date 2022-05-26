@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.finalprojectv1.R
 import com.example.finalprojectv1.activities.ChatList
 import com.example.finalprojectv1.activities.ChatMessage
+import com.example.finalprojectv1.activities.ChatTripListView
 import com.example.finalprojectv1.utils.ChatTripDetail
 
 class TripListAdapter(private val context: Context, private val DetList : ArrayList<ChatTripDetail>)

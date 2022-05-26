@@ -178,7 +178,7 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         }
 
         val context = context
-        val intent = Intent( context, ChatList::class.java)
+        val intent = Intent( context, ChatTripListView::class.java)
         context.startActivity(intent)
 
     }

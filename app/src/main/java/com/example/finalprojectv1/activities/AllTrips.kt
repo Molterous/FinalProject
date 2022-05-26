@@ -116,12 +116,18 @@ class AllTrips : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
 
+                    val firebaseAuth = FirebaseAuth.getInstance()
+                    var phone = (firebaseAuth.currentUser?.phoneNumber).toString()
+
                     for (userSnapshot in snapshot.children) {
 
-
                         val user = userSnapshot.getValue(FetchTrips::class.java)
-                        userArrayList.add(user!!)
 
+                        if (user != null) {
+                            if( !user.phone.equals(phone, true) ) {
+                                userArrayList.add(user)
+                            }
+                        }
                     }
                     //.........cmmnt2..........
                     tempArrayList.addAll(userArrayList)
