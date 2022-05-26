@@ -15,6 +15,7 @@ import com.example.finalprojectv1.utils.ChatTripDetail
 class TripListAdapter(private val context: Context, private val DetList : ArrayList<ChatTripDetail>)
     : RecyclerView.Adapter<TripListAdapter.MyViewHolder>() {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
         val itemView = LayoutInflater.from(parent.context).inflate(
@@ -47,7 +48,9 @@ class TripListAdapter(private val context: Context, private val DetList : ArrayL
     }
 
     override fun getItemCount(): Int {
+
         return DetList.size
+
     }
 
 

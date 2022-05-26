@@ -219,6 +219,8 @@ class Trips : AppCompatActivity(), View.OnClickListener {
                 val sdf = SimpleDateFormat("EEE,dd MMM yyyy")
 
                 val currentDate = sdf.format(Date())
+                var Cd: String = sdf.format(Date())
+
                 Log.d("hey", "today is $currentDate")
 
                 var cd = (currentDate[4].toString() + currentDate[5].toString())
@@ -233,10 +235,17 @@ class Trips : AppCompatActivity(), View.OnClickListener {
                         Log.d("hey", item.date.toString())
 
                         var n = item.date.toString()
+
+                        var a=n.compareTo(currentDate)
+                       // var b= Cd?.compareTo(n2)
+                        Log.d("taga","hello mr lose r:  "+a.toString());
+
                         var od = (n[5].toString() + n[6].toString())
 
 
-                        if (cd < od) {
+
+
+                        if (n.compareTo(currentDate) < 0) {
 
                             var info = item.source + " to " + item.destination
                             sendNotification(info)

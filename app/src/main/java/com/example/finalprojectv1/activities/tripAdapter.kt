@@ -101,9 +101,10 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
             }
 
 
-        holder.destination.setOnClickListener {
+        holder.p_image.setOnClickListener {
 
           //  val isprofile = true
+
             val phone = currentitem.phone
             Log.d("Acitivity",phone.toString())
             Toast.makeText( context,  phone,Toast.LENGTH_LONG).show()
@@ -130,8 +131,6 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
 
             val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "$phone"))
             context.startActivity(intent)
-
-
         }
 
         holder.c_image.setOnClickListener {
@@ -173,7 +172,6 @@ class tripAdapter(private val context: Context, private val TripList : ArrayList
         val seattv=itemView.seat_tv
         val linear_view=itemView.card_lv
         val btn=itemView.BookBtnAllTrip
-
 
     }
 
