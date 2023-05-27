@@ -136,13 +136,13 @@ class ProfileData : AppCompatActivity() {
 
 
                 val fName = it.child("name").value.toString()
-                val AadharCard = it.child("Aadhaar_card").value.toString()
-                val PanCard = it.child("Pan_card").value.toString()
-                val EmailID = it.child("Email_id").value.toString()
-                val PhoneNumber = it.child("Phone_number").value.toString()
-                val EmergencyNumber = it.child("Emergency_contact_number").value.toString()
-                val Address= it.child("Address").value.toString()
-                val Profession = it.child("Profession").value.toString()
+                val AadharCard = it.child("aadhaar_card").value.toString()
+                val PanCard = it.child("pan_card").value.toString()
+                val EmailID = it.child("email_id").value.toString()
+                val PhoneNumber = it.child("phone_number").value.toString()
+                val EmergencyNumber = it.child("emergency_contact_number").value.toString()
+                val Address= it.child("address").value.toString()
+                val Profession = it.child("profession").value.toString()
 
 
                 val editName: EditText = findViewById(R.id.et_name)

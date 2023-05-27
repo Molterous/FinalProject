@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SearchView
@@ -121,13 +122,18 @@ class AllTrips : AppCompatActivity() {
 
                     for (userSnapshot in snapshot.children) {
 
-                        val user = userSnapshot.getValue(FetchTrips::class.java)
+                        try{
+                            val user = userSnapshot.getValue(FetchTrips::class.java)
 
-                        if (user != null) {
-                            if( !user.phone.equals(phone, true) ) {
-                                userArrayList.add(user)
+                            if (user != null) {
+                                if( !user.phone.equals(phone, true) ) {
+                                    userArrayList.add(user)
+                                }
                             }
+                        }catch (e: Exception){
+                            Log.e("convertException", " ${e.stackTraceToString()}");
                         }
+
                     }
                     //.........cmmnt2..........
                     tempArrayList.addAll(userArrayList)
